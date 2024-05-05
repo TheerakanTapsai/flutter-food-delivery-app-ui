@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/animation/ScaleRoute.dart';
-import 'package:flutter_app/pages/FoodOrderPage.dart';
-import 'package:flutter_app/widgets/FoodDetailsSlider.dart';
+import 'package:flutter_food_delivery_app_ui/animation/ScaleRoute.dart';
+import 'package:flutter_food_delivery_app_ui/pages/FoodOrderPage.dart';
+import 'package:flutter_food_delivery_app_ui/widgets/FoodDetailsSlider.dart';
+import 'package:flutter/services.dart';
 
 class FoodDetailsPage extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class FoodDetailsPage extends StatefulWidget {
 class _FoodDetailsPageState extends State<FoodDetailsPage> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -25,7 +27,6 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          brightness: Brightness.light,
           actions: <Widget>[
             IconButton(
                 icon: Icon(
@@ -126,10 +127,10 @@ class FoodTitleWidget extends StatelessWidget {
   String productHost;
 
   FoodTitleWidget({
-    Key key,
-    @required this.productName,
-    @required this.productPrice,
-    @required this.productHost,
+    Key? key,
+    required this.productName,
+    required this.productPrice,
+    required this.productHost,
   }) : super(key: key);
 
   @override
