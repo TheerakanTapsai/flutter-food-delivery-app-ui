@@ -9,15 +9,10 @@ class _BestFoodWidgetState extends State<BestFoodWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: 200,
       width: double.infinity,
       child: Column(
-        children: <Widget>[
-          BestFoodTitle(),
-          Expanded(
-            child: BestFoodList(),
-          )
-        ],
+        children: <Widget>[BestFoodTitle(), Expanded(child: BestFoodList())],
       ),
     );
   }
@@ -53,13 +48,13 @@ class BestFoodTiles extends StatelessWidget {
   String slug;
 
   BestFoodTiles(
-      {Key key,
-      @required this.name,
-      @required this.imageUrl,
-      @required this.rating,
-      @required this.numberOfRating,
-      @required this.price,
-      @required this.slug})
+      {Key? key,
+      required this.name,
+      required this.imageUrl,
+      required this.rating,
+      required this.numberOfRating,
+      required this.price,
+      required this.slug})
       : super(key: key);
 
   @override

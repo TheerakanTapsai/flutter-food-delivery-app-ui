@@ -1,28 +1,16 @@
-# Flutter Food Delivery Application Design
+# flutter_food_delivery_app_ui
 
-## This application is not completed yet. Currently, I am working on it. 
-A small attempt to make an Food delivery app user interface in Flutter for Android and iOS.
+A new Flutter project.
 
-## 🤓 Author(s)
-**Md Tarikul Islam** [![Twitter Follow](https://img.shields.io/twitter/follow/tarikul711.svg?style=social)](https://twitter.com/tarikul711)
+## Getting Started
 
-## Food Ordering & Delivery App UI in Flutter
-<img src="screens/full_ui.png"  />
+This project is a starting point for a Flutter application.
 
-## ScreenShots
-### Home Page
-<img src="screens/home_screen.jpg" height="500em" />
+A few resources to get you started if this is your first Flutter project:
 
-### Food Details Screen & Add To Cart Screen
-<img src="screens/detail_screen.jpg" height="500em" /> &nbsp;&nbsp;&nbsp;&nbsp; <img src="screens/add_to_cart_screen.jpg" height="500em" />
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-### Login & Registration Screen
-<img src="screens/login_screen.jpg" height="500em" />&nbsp;&nbsp;&nbsp;&nbsp; <img src="screens/signin_scren.jpg" height="500em" />
-
-## ✨ Requirements
-* Any Operating System (ie. MacOS X, Linux, Windows)
-* Any IDE with Flutter SDK installed (ie.  Android Studio, VSCode, IntelliJ, etc)
-* A little knowledge of Dart and Flutter
-* A brain to think 🤓🤓
-
-
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

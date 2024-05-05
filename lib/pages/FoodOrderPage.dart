@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
+import '../model/SelectedIndex.dart';
+import '../widgets/BottomNavBarWidget.dart';
 
 class FoodOrderPage extends StatefulWidget {
   @override
@@ -8,98 +13,106 @@ class FoodOrderPage extends StatefulWidget {
 
 class _FoodOrderPageState extends State<FoodOrderPage> {
   int counter = 3;
-
   @override
   Widget build(BuildContext context) {
+    final selectedIndexModel = Provider.of<SelectedIndexModel>(context);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xFFFAFAFA),
-          elevation: 0,
-          leading: IconButton(
+      appBar: AppBar(
+        backgroundColor: Color(0xFFFAFAFA),
+        elevation: 0,
+        leading: IconButton(
             icon: Icon(
               Icons.arrow_back_ios,
               color: Color(0xFF3a3737),
             ),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+              Navigator.of(context).pop();
+              selectedIndexModel.setIndex(0);
+            }),
+        title: Center(
+          child: Text(
+            "Item Carts",
+            style: TextStyle(
+                color: Color(0xFF3a3737),
+                fontWeight: FontWeight.w600,
+                fontSize: 18),
+            textAlign: TextAlign.center,
           ),
-          title: Center(
-            child: Text(
-              "Item Carts",
-              style: TextStyle(
-                  color: Color(0xFF3a3737),
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          brightness: Brightness.light,
-          actions: <Widget>[
-            CartIconWithBadge(),
-          ],
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.only(left: 5),
-                  child: Text(
-                    "Your Food Cart",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  ),
+        actions: <Widget>[
+          CartIconWithBadge(),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                child: Text(
+                  "Your Food Cart",
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Color(0xFF3a3a3b),
+                      fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.left,
                 ),
-                SizedBox(
-                  height: 10,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              CartItem(
+                  productName: "Grilled Salmon",
+                  productPrice: "\$96.00",
+                  productImage: "ic_popular_food_1",
+                  productCartQuantity: "2"),
+              SizedBox(
+                height: 10,
+              ),
+              CartItem(
+                  productName: "Meat vegetable",
+                  productPrice: "\$65.08",
+                  productImage: "ic_popular_food_4",
+                  productCartQuantity: "5"),
+              SizedBox(
+                height: 10,
+              ),
+              PromoCodeWidget(),
+              SizedBox(
+                height: 10,
+              ),
+              TotalCalculationWidget(),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                child: Text(
+                  "Payment Method",
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Color(0xFF3a3a3b),
+                      fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.left,
                 ),
-                CartItem(
-                    productName: "Grilled Salmon",
-                    productPrice: "\$96.00",
-                    productImage: "ic_popular_food_1",
-                    productCartQuantity: "2"),
-                SizedBox(
-                  height: 10,
-                ),
-                CartItem(
-                    productName: "Meat vegetable",
-                    productPrice: "\$65.08",
-                    productImage: "ic_popular_food_4",
-                    productCartQuantity: "5"),
-                SizedBox(
-                  height: 10,
-                ),
-                PromoCodeWidget(),
-                SizedBox(
-                  height: 10,
-                ),
-                TotalCalculationWidget(),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 5),
-                  child: Text(
-                    "Payment Method",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                PaymentMethodWidget(),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              PaymentMethodWidget(),
+            ],
           ),
-        ));
+        ),
+      ),
+      bottomNavigationBar: BottomNavBarWidget(
+        onIndexChanged: (index) {
+          selectedIndexModel.setIndex(index);
+        },
+      ),
+    );
   }
 }
 
@@ -181,81 +194,83 @@ class TotalCalculationWidget extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           padding: EdgeInsets.only(left: 25, right: 30, top: 10, bottom: 10),
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Grilled Salmon",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "\$192",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Meat vegetable",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "\$102",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Total",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "\$292",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Grilled Salmon",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(
+                      "\$192",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Meat vegetable",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(
+                      "\$102",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Total",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(
+                      "\$292",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -287,6 +302,7 @@ class PromoCodeWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(7)),
               fillColor: Colors.white,
               hintText: 'Add Your Promo Code',
+              hintStyle: TextStyle(color: Colors.black),
               filled: true,
               suffixIcon: IconButton(
                   icon: Icon(
@@ -309,18 +325,18 @@ class CartItem extends StatelessWidget {
   String productCartQuantity;
 
   CartItem({
-    Key key,
-    @required this.productName,
-    @required this.productPrice,
-    @required this.productImage,
-    @required this.productCartQuantity,
+    Key? key,
+    required this.productName,
+    required this.productPrice,
+    required this.productImage,
+    required this.productCartQuantity,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 130,
+      height: 150,
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
           color: Color(0xFFfae3e2).withOpacity(0.3),

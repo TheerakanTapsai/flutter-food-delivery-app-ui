@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/animation/RotationRoute.dart';
-import 'package:flutter_app/animation/ScaleRoute.dart';
-import 'package:flutter_app/pages/FoodDetailsPage.dart';
+import 'package:flutter_food_delivery_app_ui/animation/RotationRoute.dart';
+import 'package:flutter_food_delivery_app_ui/animation/ScaleRoute.dart';
+import 'package:flutter_food_delivery_app_ui/pages/FoodDetailsPage.dart';
 
 class PopularFoodsWidget extends StatefulWidget {
   @override
@@ -35,13 +35,13 @@ class PopularFoodTiles extends StatelessWidget {
   String slug;
 
   PopularFoodTiles(
-      {Key key,
-      @required this.name,
-      @required this.imageUrl,
-      @required this.rating,
-      @required this.numberOfRating,
-      @required this.price,
-      @required this.slug})
+      {Key? key,
+      required this.name,
+      required this.imageUrl,
+      required this.rating,
+      required this.numberOfRating,
+      required this.price,
+      required this.slug})
       : super(key: key);
 
   @override
@@ -52,179 +52,176 @@ class PopularFoodTiles extends StatelessWidget {
       },
       child: Column(
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
-            decoration: BoxDecoration(boxShadow: [
-              /* BoxShadow(
-                color: Color(0xFFfae3e2),
-                blurRadius: 15.0,
-                offset: Offset(0, 0.75),
-              ),*/
-            ]),
-            child: Card(
-                color: Colors.white,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(5.0),
-                  ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                  color: Color(0xFFfae3e2),
+                  blurRadius: 15.0,
+                  // offset: Offset(0, 0.75),
                 ),
-                child: Container(
-                  width: 170,
-                  height: 210,
-                  child: Column(
-                    children: <Widget>[
-                      Stack(
-                        children: <Widget>[
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Container(
+              ]),
+              child: Card(
+                  color: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(5.0),
+                    ),
+                  ),
+                  child: Container(
+                    width: 170,
+                    height: 200,
+                    child: Column(
+                      children: <Widget>[
+                        Stack(
+                          children: <Widget>[
+                            Align(
                               alignment: Alignment.topRight,
-                              width: double.infinity,
-                              padding: EdgeInsets.only(right: 5, top: 5),
                               child: Container(
-                                height: 28,
-                                width: 28,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.white70,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Color(0xFFfae3e2),
-                                        blurRadius: 25.0,
-                                        offset: Offset(0.0, 0.75),
-                                      ),
-                                    ]),
-                                child: Icon(
-                                  Icons.favorite,
-                                  color: Color(0xFFfb3132),
-                                  size: 16,
+                                alignment: Alignment.topRight,
+                                width: double.infinity,
+                                padding: EdgeInsets.only(right: 5, top: 5),
+                                child: Container(
+                                  height: 28,
+                                  width: 28,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.white70,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color(0xFFfae3e2),
+                                          blurRadius: 25.0,
+                                          offset: Offset(0.0, 0.75),
+                                        ),
+                                      ]),
+                                  child: Icon(
+                                    Icons.favorite,
+                                    color: Color(0xFFfb3132),
+                                    size: 16,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Center(
-                                child: Image.asset(
-                              'assets/images/popular_foods/' +
-                                  imageUrl +
-                                  ".png",
-                              width: 130,
-                              height: 140,
-                            )),
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.bottomLeft,
-                            padding: EdgeInsets.only(left: 5, top: 5),
-                            child: Text(name,
-                                style: TextStyle(
-                                    color: Color(0xFF6e6e71),
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500)),
-                          ),
-                          Container(
-                            alignment: Alignment.topRight,
-                            padding: EdgeInsets.only(right: 5),
-                            child: Container(
-                              height: 28,
-                              width: 28,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white70,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0xFFfae3e2),
-                                      blurRadius: 25.0,
-                                      offset: Offset(0.0, 0.75),
-                                    ),
-                                  ]),
-                              child: Icon(
-                                Icons.near_me,
-                                color: Color(0xFFfb3132),
-                                size: 16,
-                              ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Center(
+                                  child: Image.asset(
+                                'assets/images/popular_foods/' +
+                                    imageUrl +
+                                    ".png",
+                                width: 130,
+                                height: 140,
+                              )),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 6),
+                          child: Container(
+                            height: 35,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Container(
+                                  width: 100,
+                                  child: Text(name,
+                                      maxLines: 2,
+                                      style: TextStyle(
+                                          height: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          color: Color(0xFF6e6e71),
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500)),
+                                ),
+                                Container(
+                                  child: Icon(
+                                    Icons.near_me,
+                                    color: Color(0xFFfb3132),
+                                    size: 16,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Container(
+                                    child: Text(rating,
+                                        style: TextStyle(
+                                            color: Color(0xFF6e6e71),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400)),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Container(
+                                    child: Row(
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.star,
+                                          size: 10,
+                                          color: Color(0xFFfb3132),
+                                        ),
+                                        Icon(
+                                          Icons.star,
+                                          size: 10,
+                                          color: Color(0xFFfb3132),
+                                        ),
+                                        Icon(
+                                          Icons.star,
+                                          size: 10,
+                                          color: Color(0xFFfb3132),
+                                        ),
+                                        Icon(
+                                          Icons.star,
+                                          size: 10,
+                                          color: Color(0xFFfb3132),
+                                        ),
+                                        Icon(
+                                          Icons.star,
+                                          size: 10,
+                                          color: Color(0xFF9b9b9c),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Text("($numberOfRating)",
+                                        style: TextStyle(
+                                            color: Color(0xFF6e6e71),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400)),
+                                  ),
+                                ],
+                              ),
                               Container(
-                                alignment: Alignment.topLeft,
-                                padding: EdgeInsets.only(left: 5, top: 5),
-                                child: Text(rating,
+                                child: Text('\$' + price,
                                     style: TextStyle(
                                         color: Color(0xFF6e6e71),
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(top: 3, left: 5),
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Color(0xFF9b9b9c),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.topLeft,
-                                padding: EdgeInsets.only(left: 5, top: 5),
-                                child: Text("($numberOfRating)",
-                                    style: TextStyle(
-                                        color: Color(0xFF6e6e71),
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400)),
-                              ),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600)),
+                              )
                             ],
                           ),
-                          Container(
-                            alignment: Alignment.bottomLeft,
-                            padding: EdgeInsets.only(left: 5, top: 5, right: 5),
-                            child: Text('\$' + price,
-                                style: TextStyle(
-                                    color: Color(0xFF6e6e71),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600)),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                )),
+                        )
+                      ],
+                    ),
+                  )),
+            ),
           ),
         ],
       ),
@@ -241,7 +238,7 @@ class PopularFoodTitle extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            "Popluar Foods",
+            "Popular Foods",
             style: TextStyle(
                 fontSize: 20,
                 color: Color(0xFF3a3a3b),
@@ -250,7 +247,9 @@ class PopularFoodTitle extends StatelessWidget {
           Text(
             "See all",
             style: TextStyle(
-                fontSize: 16, color: Colors.blue, fontWeight: FontWeight.w100),
+                fontSize: 16,
+                color: Color(0xFFfb3132),
+                fontWeight: FontWeight.w400),
           )
         ],
       ),
@@ -331,5 +330,3 @@ class PopularFoodItems extends StatelessWidget {
     );
   }
 }
-
-
