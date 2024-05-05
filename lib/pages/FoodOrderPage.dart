@@ -13,13 +13,6 @@ class FoodOrderPage extends StatefulWidget {
 
 class _FoodOrderPageState extends State<FoodOrderPage> {
   int counter = 3;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Listen for changes to the selected index
-  }
-
   @override
   Widget build(BuildContext context) {
     final selectedIndexModel = Provider.of<SelectedIndexModel>(context);
@@ -201,81 +194,83 @@ class TotalCalculationWidget extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           padding: EdgeInsets.only(left: 25, right: 30, top: 10, bottom: 10),
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Grilled Salmon",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "\$192",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Meat vegetable",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "\$102",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Total",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "\$292",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Grilled Salmon",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(
+                      "\$192",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Meat vegetable",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(
+                      "\$102",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Total",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(
+                      "\$292",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -307,6 +302,7 @@ class PromoCodeWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(7)),
               fillColor: Colors.white,
               hintText: 'Add Your Promo Code',
+              hintStyle: TextStyle(color: Colors.black),
               filled: true,
               suffixIcon: IconButton(
                   icon: Icon(
@@ -340,7 +336,7 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 130,
+      height: 150,
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
           color: Color(0xFFfae3e2).withOpacity(0.3),
